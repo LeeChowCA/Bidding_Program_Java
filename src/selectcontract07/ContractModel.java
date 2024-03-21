@@ -35,7 +35,7 @@ class ContractModel {
         this.theContractsAll = new ArrayList<> (theContracts);
         
         try {
-            FileReader fileReader = new FileReader("M:\\Term2\\ICS125\\NetBeansProjects\\SelectContract_part2\\SelectContract\\src\\selectcontract\\contracts.txt");
+            FileReader fileReader = new FileReader("M:\\Term2\\ICS125\\NetBeansProjects\\SelectContract07\\src\\selectcontract07\\contracts.txt");
             BufferedReader bufferedReader = new BufferedReader(fileReader);
             String line;
             

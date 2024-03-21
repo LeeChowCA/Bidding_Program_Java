@@ -44,6 +44,10 @@ public class ContractView extends javax.swing.JFrame {
     void addcomboBoxListener(ItemListener listenForComboBox) {
         jComboOriginCity.addItemListener(listenForComboBox);
     }
+    
+    void addNewContractListener(ActionListener listenForNewContractMenuItem){
+        jMenuNewContract.addActionListener(listenForNewContractMenuItem);
+    }
 
     void displayErrorMessage(String errorMessage) {
         JOptionPane.showMessageDialog(this, errorMessage);
@@ -194,6 +198,11 @@ public class ContractView extends javax.swing.JFrame {
         });
 
         jBidButton.setText("Bid");
+        jBidButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBidButtonActionPerformed(evt);
+            }
+        });
 
         jNextButton.setText("Next");
 
@@ -268,7 +277,7 @@ public class ContractView extends javax.swing.JFrame {
 
         jMenu1.setText("File");
 
-        jMenuNewContract.setText("New Value");
+        jMenuNewContract.setText("New Contract");
         jMenuNewContract.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuNewContractActionPerformed(evt);
@@ -312,8 +321,12 @@ public class ContractView extends javax.swing.JFrame {
     }//GEN-LAST:event_jPrevButtonActionPerformed
 
     private void jMenuNewContractActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuNewContractActionPerformed
-        // TODO add your handling code here:
+                // TODO add your handling code here:
     }//GEN-LAST:event_jMenuNewContractActionPerformed
+
+    private void jBidButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBidButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jBidButtonActionPerformed
 
     /**
      * @param args the command line arguments

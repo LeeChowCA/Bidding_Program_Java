@@ -79,6 +79,23 @@ class ContractController {
         }
     }
     
+    class newContractBtnListener implements ActionListener {
+        
+        @Override
+        public void actionPerformed (ActionEvent e) {
+            try {
+                NewContract newContract;
+                newContract = new NewContract(theView, true);
+                newContract.setLocationRelativeTo(null);
+                newContract.setVisible(true);
+            } catch(Exception ex) {
+                System.out.println(ex);
+                theView.displayErrorMessage("It's an error");
+            }
+            setUpDisplay();
+        }
+    }
+    
     class ComboListener implements ItemListener {
         @Override
         public void itemStateChanged(ItemEvent e) {
@@ -97,6 +114,7 @@ class ContractController {
         this.theModel = theModel;
         this.theView.addPrevListener(new PrevButtonListener());
         this.theView.addBidListener(new BidButtonListener());
+        this.theView.addNewContractListener(new newContractBtnListener());
         this.theView.addNextListener(new NextButtonListener());
         this.theView.addcomboBoxListener(new ComboListener());
         this.theView.setOriginCityList(theModel.getOriginCityList());

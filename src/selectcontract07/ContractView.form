@@ -67,7 +67,7 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuNewContract">
               <Properties>
-                <Property name="text" type="java.lang.String" value="New Value"/>
+                <Property name="text" type="java.lang.String" value="New Contract"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuNewContractActionPerformed"/>
@@ -321,6 +321,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Bid"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBidButtonActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jNextButton">
           <Properties>
