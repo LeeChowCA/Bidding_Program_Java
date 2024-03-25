@@ -3,3 +3,7 @@
 3HQC,Seattle,Vancouver,Pharmaceutical
 4HDS,Shenzhen, Guangdong, Panda
 5sdf,Shenzhen, Guangdong, goose
+5GFD,Seattle, Vancouver, asdf
+2WQE,Vancouver, Victoria, asdf
+1GFD,Victoria, Prince George, asdf
+1QQQ,Victoria, Seattle, asdf

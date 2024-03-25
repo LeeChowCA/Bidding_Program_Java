@@ -26,10 +26,10 @@ class ContractController {
         @Override
         public void actionPerformed(ActionEvent e) {
             if (theModel.getCurrentContractNum() == 0) {
-                return;     
+                return;
             }
 
-            try {               
+            try {
                 theModel.prevContract();
             } catch (Exception ex) {
                 System.out.println(ex);
@@ -66,10 +66,9 @@ class ContractController {
             try {
                 ConfirmBid cb;
                 cb = new ConfirmBid(theView, true, theModel.getTheContract());
-                    cb.setLocationRelativeTo(null);
-                    cb.setVisible(true);
-                }
-             catch (Exception ex) {
+                cb.setLocationRelativeTo(null);
+                cb.setVisible(true);
+            } catch (Exception ex) {
                 System.out.println(ex);
                 theView.displayErrorMessage(
                         "Error: The numbers entered must be integers");
@@ -78,28 +77,51 @@ class ContractController {
             setUpDisplay();
         }
     }
-    
-    class newContractBtnListener implements ActionListener {
-        
+
+    class NewContractBtnListener implements ActionListener {
+
         @Override
-        public void actionPerformed (ActionEvent e) {
+        public void actionPerformed(ActionEvent e) {
             try {
-                NewContract newContract;
-                newContract = new NewContract(theView, true);
-                newContract.setLocationRelativeTo(null);
-                newContract.setVisible(true);
-            } catch(Exception ex) {
+                // Pass 'this' as an argument
+                NewContract newContractDialog = new NewContract(theView, true, theModel, ContractController.this);
+//                pass controller into newContractDialog, so the controller created by "priate ContractController controller" can refer to the right object.
+                newContractDialog.setLocationRelativeTo(null);
+                newContractDialog.setVisible(true);
+//                make sure the dialog is visible
+            } catch (Exception ex) {
                 System.out.println(ex);
                 theView.displayErrorMessage("It's an error");
             }
-            setUpDisplay();
         }
     }
-    
+
+    class ExitBtnListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            System.exit(0);
+        }
+    }
+
     class ComboListener implements ItemListener {
+
         @Override
         public void itemStateChanged(ItemEvent e) {
             System.out.println(e.getItem().toString());
+            if (e.getStateChange() == ItemEvent.SELECTED) {
+                String selectedCity = e.getItem().toString();
+                System.out.println(selectedCity);
+                theModel.updateContractList(selectedCity);
+                setUpDisplay();
+            }
+        }
+    }
+
+    class NewComboListen implements ItemListener {
+
+        @Override
+        public void itemStateChanged(ItemEvent e) {
             if (e.getStateChange() == ItemEvent.SELECTED) {
                 String selectedCity = e.getItem().toString();
                 System.out.println(selectedCity);
@@ -114,29 +136,32 @@ class ContractController {
         this.theModel = theModel;
         this.theView.addPrevListener(new PrevButtonListener());
         this.theView.addBidListener(new BidButtonListener());
-        this.theView.addNewContractListener(new newContractBtnListener());
+        this.theView.addNewContractListener(new NewContractBtnListener());
         this.theView.addNextListener(new NextButtonListener());
         this.theView.addcomboBoxListener(new ComboListener());
+        //add listeners for these buttons
         this.theView.setOriginCityList(theModel.getOriginCityList());
+        this.theView.addExitBtnListener(new ExitBtnListener());
+
         setUpDisplay();
+        //add action listener for the theView;
     }
 
     private void setUpDisplay() {
         try {
-            
+
             if (theModel.getCurrentContractNum() == 0) {
                 theView.setPrevButtonEnabled(false);
-            }
-            else 
+            } else {
                 theView.setPrevButtonEnabled(true);
-            
+            }
+
             if (theModel.getCurrentContractNum() == theModel.getContractCount() - 1) {
                 theView.setNextButtonEnabled(false);
-            }
-            else 
+            } else {
                 theView.setNextButtonEnabled(true);
-            
-            
+            }
+
             if (theModel.foundContracts()) {
                 Contract c = theModel.getTheContract();
                 theView.setContractID(c.getContractID());
@@ -154,6 +179,27 @@ class ContractController {
         } catch (Error ex) {
             System.out.println(ex);
             theView.displayErrorMessage("Error: There was a problem setting the contract \n" + "    Contract number: " + theModel.getCurrentContractNum());
+        }
+    }
+
+    public void refreshMainInterface() {
+        ContractModel newModel = new ContractModel();
+//        create a newModel to use the updated contract.txt content
+        Contract c = newModel.getTheContract();
+        if (newModel.foundContracts()) {
+            theView.setContractID(c.getContractID());
+            theView.setDestCity(c.getDestCity());
+            theView.setOriginCity(c.getOriginCity());
+            theView.setOrderItem(c.getOrderItem());
+            theView.updateContractViewPanel(newModel.getCurrentContractNum(), newModel.getContractCount());
+            System.out.println(newModel.getCurrentContractNum() + "" + newModel.getContractCount());
+            theModel = newModel;
+            //make theModel = newModel, update theModel into newModel
+        } else {
+            theView.setContractID("???");
+            theView.setDestCity("???");
+            theView.setOriginCity("???");
+            theView.setOrderItem("???");
         }
     }
 

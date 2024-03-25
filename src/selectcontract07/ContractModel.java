@@ -32,6 +32,7 @@ class ContractModel {
         this.theContracts = new ArrayList<>();
         this.contractCounter = 0;
         this.originCityList = new TreeSet<>();
+//        The elements in a TreeSet are stored in a sorted (ascending) order, and each element must be unique
         this.theContractsAll = new ArrayList<> (theContracts);
         
         try {
@@ -104,7 +105,22 @@ class ContractModel {
     public String[] getOriginCityList() {
         String[] a;
         a = originCityList.toArray(new String[originCityList.size()]);
+        //create an array with the size of originCityList
         return a;
     }
+    
+    public String[] getNewOriginCityList(){
+        String[] newCityList = {"Victoria", "Vancouver", "Seattle", "Nanaimo", "Prince George"};
+        return newCityList;     
+    }
+    //
+    
+    public String[] getNewDestinationList(){
+        String[] newCityList = {"Victoria", "Vancouver", "Seattle", "Nanaimo", "Prince George"};
+        return newCityList;     
+    }
+    //this method create an ArrayList to store the newCityList, the newCityList will be 
+    //shown on the dialog.
+    
     
 }

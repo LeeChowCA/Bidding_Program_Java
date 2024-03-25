@@ -42,11 +42,11 @@
                   </Group>
               </Group>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jTextNewContractID" min="-2" max="-2" attributes="0"/>
-                  <Component id="jTextNewOriginCity" min="-2" max="-2" attributes="0"/>
-                  <Component id="jTextNewDestination" min="-2" max="-2" attributes="0"/>
-                  <Component id="jTextNewOrder" min="-2" max="-2" attributes="0"/>
+                  <Component id="jTextNewContractID" min="-2" pref="80" max="-2" attributes="0"/>
+                  <Component id="jTextNewOrder" min="-2" pref="80" max="-2" attributes="0"/>
                   <Component id="jButtonCancel" min="-2" max="-2" attributes="0"/>
+                  <Component id="jComboBoxNewOriginCity" min="-2" max="-2" attributes="0"/>
+                  <Component id="jComboBoxNewDestination" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="125" max="-2" attributes="0"/>
           </Group>
@@ -65,12 +65,12 @@
                       <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextNewOriginCity" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jComboBoxNewOriginCity" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextNewDestination" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jComboBoxNewDestination" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace pref="33" max="32767" attributes="0"/>
                       <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
@@ -98,7 +98,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="jTextNewContractID">
       <Properties>
-        <Property name="text" type="java.lang.String" value="jTextField1"/>
+        <Property name="toolTipText" type="java.lang.String" value="please enter your contractID with the format of a single digit 1 to 9 and followed by 3 letters(upper or lower), the letters will be converted into uppercases eventually"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextNewContractIDActionPerformed"/>
@@ -117,19 +117,9 @@
         <Property name="text" type="java.lang.String" value="New Origin city"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextNewOriginCity">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="jTextField2"/>
-      </Properties>
-    </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">
       <Properties>
         <Property name="text" type="java.lang.String" value="New Destination"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="jTextNewDestination">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="jTextField3"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel4">
@@ -138,14 +128,45 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="jTextNewOrder">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="jTextField4"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="jButtonCancel">
       <Properties>
         <Property name="text" type="java.lang.String" value="Cancel"/>
+        <Property name="toolTipText" type="java.lang.String" value=""/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonCancelActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="jComboBoxNewOriginCity">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="4">
+            <StringItem index="0" value="Item 1"/>
+            <StringItem index="1" value="Item 2"/>
+            <StringItem index="2" value="Item 3"/>
+            <StringItem index="3" value="Item 4"/>
+          </StringArray>
+        </Property>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="jComboBoxNewDestination">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="4">
+            <StringItem index="0" value="Item 1"/>
+            <StringItem index="1" value="Item 2"/>
+            <StringItem index="2" value="Item 3"/>
+            <StringItem index="3" value="Item 4"/>
+          </StringArray>
+        </Property>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
     </Component>
   </SubComponents>
 </Form>

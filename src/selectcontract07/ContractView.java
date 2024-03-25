@@ -48,6 +48,10 @@ public class ContractView extends javax.swing.JFrame {
     void addNewContractListener(ActionListener listenForNewContractMenuItem){
         jMenuNewContract.addActionListener(listenForNewContractMenuItem);
     }
+    
+    void addExitBtnListener(ActionListener listenForExit){
+        jMenuItemExit.addActionListener(listenForExit);
+    }
 
     void displayErrorMessage(String errorMessage) {
         JOptionPane.showMessageDialog(this, errorMessage);
@@ -91,7 +95,7 @@ public class ContractView extends javax.swing.JFrame {
         this.jComboOriginCity.setModel(model);
     }
 
-
+    
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -105,6 +109,9 @@ public class ContractView extends javax.swing.JFrame {
         jMenuBar4 = new javax.swing.JMenuBar();
         jMenu7 = new javax.swing.JMenu();
         jMenu8 = new javax.swing.JMenu();
+        jMenuBar5 = new javax.swing.JMenuBar();
+        jMenu9 = new javax.swing.JMenu();
+        jMenu10 = new javax.swing.JMenu();
         jPanel1 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         jComboOriginCity = new javax.swing.JComboBox<>();
@@ -124,8 +131,10 @@ public class ContractView extends javax.swing.JFrame {
         jLabelContractID = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        jMenuNewContract = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
+        jMenuNewContract = new javax.swing.JMenuItem();
+        jMenuExit = new javax.swing.JMenu();
+        jMenuItemExit = new javax.swing.JMenuItem();
 
         jMenu3.setText("File");
         jMenuBar2.add(jMenu3);
@@ -145,12 +154,23 @@ public class ContractView extends javax.swing.JFrame {
         jMenu8.setText("Edit");
         jMenuBar4.add(jMenu8);
 
+        jMenu9.setText("File");
+        jMenuBar5.add(jMenu9);
+
+        jMenu10.setText("Edit");
+        jMenuBar5.add(jMenu10);
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Bid on Contracts");
 
         jLabel6.setText("Filter by Origin:");
 
         jComboOriginCity.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboOriginCity.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboOriginCityActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -276,6 +296,9 @@ public class ContractView extends javax.swing.JFrame {
         );
 
         jMenu1.setText("File");
+        jMenuBar1.add(jMenu1);
+
+        jMenu2.setText("Edit");
 
         jMenuNewContract.setText("New Contract");
         jMenuNewContract.addActionListener(new java.awt.event.ActionListener() {
@@ -283,12 +306,16 @@ public class ContractView extends javax.swing.JFrame {
                 jMenuNewContractActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuNewContract);
+        jMenu2.add(jMenuNewContract);
 
-        jMenuBar1.add(jMenu1);
-
-        jMenu2.setText("Edit");
         jMenuBar1.add(jMenu2);
+
+        jMenuExit.setText("Exit");
+
+        jMenuItemExit.setText("Exit");
+        jMenuExit.add(jMenuItemExit);
+
+        jMenuBar1.add(jMenuExit);
 
         setJMenuBar(jMenuBar1);
 
@@ -327,6 +354,10 @@ public class ContractView extends javax.swing.JFrame {
     private void jBidButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBidButtonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jBidButtonActionPerformed
+
+    private void jComboOriginCityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboOriginCityActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboOriginCityActionPerformed
 
     /**
      * @param args the command line arguments
@@ -379,6 +410,7 @@ public class ContractView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelOrderItem;
     private javax.swing.JLabel jLabelOriginCity;
     private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu10;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
@@ -386,10 +418,14 @@ public class ContractView extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu6;
     private javax.swing.JMenu jMenu7;
     private javax.swing.JMenu jMenu8;
+    private javax.swing.JMenu jMenu9;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JMenuBar jMenuBar3;
     private javax.swing.JMenuBar jMenuBar4;
+    private javax.swing.JMenuBar jMenuBar5;
+    private javax.swing.JMenu jMenuExit;
+    private javax.swing.JMenuItem jMenuItemExit;
     private javax.swing.JMenuItem jMenuNewContract;
     private javax.swing.JButton jNextButton;
     private javax.swing.JPanel jPanel1;

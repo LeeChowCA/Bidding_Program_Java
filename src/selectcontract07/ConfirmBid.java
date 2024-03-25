@@ -207,7 +207,7 @@ public class ConfirmBid extends javax.swing.JDialog {
 //        DateTimeFormatter.ofPattern();
 
             try {
-                BufferedWriter writer = new BufferedWriter(new FileWriter("M:\\Term2\\ICS125\\NetBeansProjects\\SelectContract_part2\\SelectContract\\src\\selectcontract\\MyContractBids.txt", true));
+                BufferedWriter writer = new BufferedWriter(new FileWriter("M:\\Term2\\ICS125\\NetBeansProjects\\SelectContract07\\src\\selectcontract07\\MyContractBids.txt", true));
                 writer.write(name + ",");
                 writer.write(contractID + ", ");
                 writer.write(bidAmount + ", ");
