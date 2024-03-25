@@ -257,7 +257,7 @@ public class NewContract extends javax.swing.JDialog {
         Pattern patternNewContractID = compile("^[1-9][A-Za-z][A-Za-z][A-Za-z]$");
         Matcher matcherNewContractID = patternNewContractID.matcher(jTextNewContractID.getText());
         boolean verificationForNewContractID = matcherNewContractID.matches();
-        Pattern patternNewOrder = compile("^(?![\\\\d]+$)(?!.*,$)[^,]+$");
+        Pattern patternNewOrder = compile("^(?!\\d+$)[^,]+$");
         Matcher matcherNewOrder = patternNewOrder.matcher(jTextNewOrder.getText());
         boolean verificationForNewOrder = matcherNewOrder.matches();
         JOptionPane newMessages;
