@@ -95,12 +95,20 @@ class ContractController {
             }
         }
     }
-    
+
     class ViewBiddingListener implements ActionListener {
-        
+
         @Override
-        public void actionPerformed (ActionEvent e) {
-            
+        public void actionPerformed(ActionEvent e) {
+            try {
+                ViewBidding newViewBiddingDialog = new ViewBidding(theView, true, theModel, ContractController.this);
+                newViewBiddingDialog.setLocationRelativeTo(null);
+                newViewBiddingDialog.setVisible(true);
+                //Create an ViewBidding dialog object, and set its parent to theView
+            } catch (Exception ex) {
+                System.out.println(ex);
+                theView.displayErrorMessage("It's an error");
+            }
         }
     }
 
@@ -150,6 +158,7 @@ class ContractController {
         //add listeners for these buttons
         this.theView.setOriginCityList(theModel.getOriginCityList());
         this.theView.addExitBtnListener(new ExitBtnListener());
+        this.theView.addViewBiddingListener(new ViewBiddingListener());
 
         setUpDisplay();
         //add action listener for the theView;

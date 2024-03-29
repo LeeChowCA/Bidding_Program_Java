@@ -98,13 +98,20 @@
             </MenuItem>
           </SubComponents>
         </Menu>
-        <Menu class="javax.swing.JMenu" name="jMenuViewBidding">
+        <Menu class="javax.swing.JMenu" name="jMenuThree">
           <Properties>
             <Property name="text" type="java.lang.String" value="View Biddings"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuViewBiddingActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuThreeActionPerformed"/>
           </Events>
+          <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuItemViewBidding">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="ViewBidding"/>
+              </Properties>
+            </MenuItem>
+          </SubComponents>
         </Menu>
         <Menu class="javax.swing.JMenu" name="jMenuExit">
           <Properties>

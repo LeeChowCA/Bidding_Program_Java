@@ -50,7 +50,7 @@ public class ContractView extends javax.swing.JFrame {
     }
     
     void addViewBiddingListener(ActionListener listenForViewBidding) {
-        jMenuViewBidding.addActionListener(listenForViewBidding);
+        jMenuItemViewBidding.addActionListener(listenForViewBidding);
     }
     
     void addExitBtnListener(ActionListener listenForExit){
@@ -137,7 +137,8 @@ public class ContractView extends javax.swing.JFrame {
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
         jMenuNewContract = new javax.swing.JMenuItem();
-        jMenuViewBidding = new javax.swing.JMenu();
+        jMenuThree = new javax.swing.JMenu();
+        jMenuItemViewBidding = new javax.swing.JMenuItem();
         jMenuExit = new javax.swing.JMenu();
         jMenuItemExit = new javax.swing.JMenuItem();
 
@@ -315,13 +316,17 @@ public class ContractView extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu2);
 
-        jMenuViewBidding.setText("View Biddings");
-        jMenuViewBidding.addActionListener(new java.awt.event.ActionListener() {
+        jMenuThree.setText("View Biddings");
+        jMenuThree.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuViewBiddingActionPerformed(evt);
+                jMenuThreeActionPerformed(evt);
             }
         });
-        jMenuBar1.add(jMenuViewBidding);
+
+        jMenuItemViewBidding.setText("ViewBidding");
+        jMenuThree.add(jMenuItemViewBidding);
+
+        jMenuBar1.add(jMenuThree);
 
         jMenuExit.setText("Exit");
 
@@ -372,9 +377,9 @@ public class ContractView extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboOriginCityActionPerformed
 
-    private void jMenuViewBiddingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuViewBiddingActionPerformed
+    private void jMenuThreeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuThreeActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuViewBiddingActionPerformed
+    }//GEN-LAST:event_jMenuThreeActionPerformed
 
     /**
      * @param args the command line arguments
@@ -443,8 +448,9 @@ public class ContractView extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar5;
     private javax.swing.JMenu jMenuExit;
     private javax.swing.JMenuItem jMenuItemExit;
+    private javax.swing.JMenuItem jMenuItemViewBidding;
     private javax.swing.JMenuItem jMenuNewContract;
-    private javax.swing.JMenu jMenuViewBidding;
+    private javax.swing.JMenu jMenuThree;
     private javax.swing.JButton jNextButton;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
