@@ -1,0 +1,15 @@
+4RDW,Victoria,Prince George,Flowers
+8EKD,Vancouver,Victoria,Vegetable
+3HQC,Seattle,Vancouver,Pharmaceutical
+4HDS,Shenzhen, Guangdong, Panda
+5sdf,Shenzhen, Guangdong, goose
+5GFD,Seattle, Vancouver, asdf
+2WQE,Vancouver, Victoria, asdf
+1GFD,Victoria, Prince George, asdf
+1QQQ,Victoria, Seattle, asdf
+1ANC,Vancouver, Victoria, asdf
+2ANC,Seattle, Victoria, 45654
+1DSF,Victoria, Seattle, sdaf
+1DSA,Seattle, Victoria, asdf sdf
+1EWR,Victoria, Seattle, asdf
+1DFS,Seattle, Victoria, fdsf dsf
