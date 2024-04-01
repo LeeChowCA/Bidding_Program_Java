@@ -65,7 +65,7 @@ class ContractController {
         public void actionPerformed(ActionEvent e) {
             try {
                 ConfirmBid cb;
-                cb = new ConfirmBid(theView, true, theModel.getTheContract());
+                cb = new ConfirmBid(theView, true, theModel.getTheContract(), ContractController.this);
                 cb.setLocationRelativeTo(null);
                 cb.setVisible(true);
             } catch (Exception ex) {
@@ -97,7 +97,7 @@ class ContractController {
     }
 
     class ViewBiddingListener implements ActionListener {
-        
+
         @Override
         public void actionPerformed(ActionEvent e) {
             try {
@@ -217,6 +217,28 @@ class ContractController {
             theView.setDestCity("???");
             theView.setOriginCity("???");
             theView.setOrderItem("???");
+        }
+    }
+
+    public void refreshViewBiddingInterface() {
+        ContractModel newModel = new ContractModel();
+//        create a newModel to use the updated contract.txt content
+        Bid c = newModel.getTheBid();
+        ViewBidding b = new ViewBidding(theView, true, theModel, ContractController.this);
+        if (newModel.foundContracts()) {
+            b.setContractID(c.getContractID());
+            b.setBidAmount(c.getBidAmount());
+            b.setBidderName(c.getTime());
+            b.setBidTime(c.getName());
+            b.updateBidViewPanel(newModel.getCurrentBidNum(), newModel.getBidCount());
+            System.out.println(newModel.getCurrentContractNum() + "" + newModel.getContractCount());
+            theModel = newModel;
+            //make theModel = newModel, update theModel into newModel
+        } else {
+            b.setContractID("???");
+            b.setBidAmount(000);
+            b.setBidderName("???");
+            b.setBidTime("???");
         }
     }
 

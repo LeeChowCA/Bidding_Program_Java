@@ -32,6 +32,8 @@ public class ConfirmBid extends javax.swing.JDialog {
     /**
      * Creates new form ConfirmBid
      */
+    
+    private ContractController controller;
     public class JsonFileUtils {
 
     public static JSONArray readJsonFile(String filePath) {
@@ -69,7 +71,7 @@ public class ConfirmBid extends javax.swing.JDialog {
         writeJsonFile(filePath, jsonArray);
     }
 }
-    public ConfirmBid(JFrame f, boolean m, Contract theContract) {
+    public ConfirmBid(JFrame f, boolean m, Contract theContract, ContractController controller) {
         super(f, m);
         initComponents();
 
@@ -77,6 +79,7 @@ public class ConfirmBid extends javax.swing.JDialog {
         this.jLabelOrigin.setText(theContract.getOriginCity());
         this.jLabelDestination.setText(theContract.getDestCity());
         this.jLabelOrderItem.setText(theContract.getOrderItem());
+        this.controller= controller;
 
         Integer startValue = 100;
         Integer minValue = 100;
@@ -270,6 +273,7 @@ public class ConfirmBid extends javax.swing.JDialog {
                 JsonFileUtils.updateJsonFile("M:\\Term2\\ICS125\\NetBeansProjects\\SelectContract08\\src\\selectcontract08\\bid.json", bidDetails);
 
                 newMessage.showMessageDialog(null, "Your name as " + name + " with bid amount " + formatter.format(bidAmount) + " has been successfully saved.");
+                controller.refreshViewBiddingInterface();
 
             } catch (IOException ex) {
                 Logger.getLogger(ConfirmBid.class.getName()).log(Level.SEVERE, null, ex);
