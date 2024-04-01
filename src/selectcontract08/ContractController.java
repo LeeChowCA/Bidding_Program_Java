@@ -97,7 +97,7 @@ class ContractController {
     }
 
     class ViewBiddingListener implements ActionListener {
-
+        
         @Override
         public void actionPerformed(ActionEvent e) {
             try {

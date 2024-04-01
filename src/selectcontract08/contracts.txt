@@ -2,14 +2,15 @@
 8EKD,Vancouver,Victoria,Vegetable
 3HQC,Seattle,Vancouver,Pharmaceutical
 4HDS,Shenzhen, Guangdong, Panda
-5sdf,Shenzhen, Guangdong, goose
-5GFD,Seattle, Vancouver, asdf
-2WQE,Vancouver, Victoria, asdf
-1GFD,Victoria, Prince George, asdf
-1QQQ,Victoria, Seattle, asdf
-1ANC,Vancouver, Victoria, asdf
-2ANC,Seattle, Victoria, 45654
-1DSF,Victoria, Seattle, sdaf
-1DSA,Seattle, Victoria, asdf sdf
-1EWR,Victoria, Seattle, asdf
-1DFS,Seattle, Victoria, fdsf dsf
+5sdf,Shenzhen, Guangdong, goose1FDS,Victoria, Seattle, asdf
+1GFL,Nanaimo, Victoria, fasdfsadf
+1SDF,Seattle, Victoria, asdf
+2FDF,Victoria, Seattle, asd
+3FDS,Victoria, Seattle, sadf
+2FDS,Victoria, Seattle, asdf
+2FDJ,Vancouver, Victoria, gfdg
+7JHG,Seattle, Victoria, jh
+4DSF,Nanaimo, Victoria, asdf
+1FDS,Seattle, Victoria, jhgfg
+6HGF,Vancouver, Victoria, sdfg
+4DSG,Seattle, Victoria, asdf

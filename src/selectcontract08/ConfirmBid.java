@@ -5,6 +5,8 @@
 package selectcontract08;
 
 import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.text.NumberFormat;
@@ -17,6 +19,9 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.SpinnerModel;
 import javax.swing.SpinnerNumberModel;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 
 /**
  *
@@ -27,6 +32,43 @@ public class ConfirmBid extends javax.swing.JDialog {
     /**
      * Creates new form ConfirmBid
      */
+    public class JsonFileUtils {
+
+    public static JSONArray readJsonFile(String filePath) {
+        JSONParser parser = new JSONParser();
+        JSONArray jsonArray = new JSONArray();
+
+        try {
+            Object obj = parser.parse(new FileReader(filePath));
+            jsonArray = (JSONArray) obj;
+        } catch (Exception e) {
+            // Handle file not found, or invalid JSON structure
+            // For file not found, it's okay as we will create new
+            System.out.println("File not found or invalid format, creating a new JSON array.");
+        }
+
+        return jsonArray;
+    }
+
+    public static void writeJsonFile(String filePath, JSONArray jsonArray) {
+        try (FileWriter file = new FileWriter(filePath)) {
+            file.write(jsonArray.toJSONString() +"\n");
+            file.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void updateJsonFile(String filePath, JSONObject newJsonObject) {
+        JSONArray jsonArray = readJsonFile(filePath);
+
+        // Add the new object to the JSON array
+        jsonArray.add(newJsonObject);
+
+        // Write the updated JSON array to the file
+        writeJsonFile(filePath, jsonArray);
+    }
+}
     public ConfirmBid(JFrame f, boolean m, Contract theContract) {
         super(f, m);
         initComponents();
@@ -207,13 +249,26 @@ public class ConfirmBid extends javax.swing.JDialog {
 //        DateTimeFormatter.ofPattern();
 
             try {
-                BufferedWriter writer = new BufferedWriter(new FileWriter("M:\\Term2\\ICS125\\NetBeansProjects\\SelectContract07\\src\\selectcontract07\\MyContractBids.txt", true));
+                BufferedWriter writer = new BufferedWriter(new FileWriter("M:\\Term2\\ICS125\\NetBeansProjects\\SelectContract08\\src\\selectcontract08\\MyContractBids.txt", true));
                 writer.write(name + ",");
                 writer.write(contractID + ", ");
                 writer.write(bidAmount + ", ");
                 writer.write(formattedTime + "\n");
 //            writer.write(currentDate);
                 writer.close();
+
+                JSONParser jsonParser = new JSONParser();
+                JSONObject bidDetails = new JSONObject();
+                
+                bidDetails.put("Name", name);
+                bidDetails.put("contractID", contractID);
+                bidDetails.put("bidAmount", bidAmount);
+                bidDetails.put("time", formattedTime);
+                
+                
+
+                JsonFileUtils.updateJsonFile("M:\\Term2\\ICS125\\NetBeansProjects\\SelectContract08\\src\\selectcontract08\\bid.json", bidDetails);
+
                 newMessage.showMessageDialog(null, "Your name as " + name + " with bid amount " + formatter.format(bidAmount) + " has been successfully saved.");
 
             } catch (IOException ex) {

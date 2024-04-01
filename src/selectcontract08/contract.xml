@@ -1,13 +1,67 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
-Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-Click nbfs://nbhost/SystemFileSystem/Templates/XML/XMLDocument.xml to edit this template
--->
-
-<!DOCTYPE Base PUBLIC '-//DTD XCatalog//EN' 'null'>
-
-
-<Base>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<contracts>
+        
+  
+  
+  
+  <contract>
+                
     
-</Base>
-
+    
+    <contractID>4DSF</contractID>
+                
+    
+    
+    <originCity>Nanaimo</originCity>
+                
+    
+    
+    <destCity>Victoria</destCity>
+                
+    
+    
+    <orderItem>asdf</orderItem>
+              
+  
+  
+  </contract>
+      
+  
+  
+  <contract>
+            
+    
+    <contractID>1FDS</contractID>
+            
+    
+    <originCity>Seattle</originCity>
+            
+    
+    <destCity>Victoria</destCity>
+            
+    
+    <orderItem>jhgfg</orderItem>
+          
+  
+  </contract>
+    
+  
+  <contract>
+        
+    <contractID>6HGF</contractID>
+        
+    <originCity>Vancouver</originCity>
+        
+    <destCity>Victoria</destCity>
+        
+    <orderItem>sdfg</orderItem>
+      
+  </contract>
+  
+  <contract>
+    <contractID>4DSG</contractID>
+    <originCity>Seattle</originCity>
+    <destCity>Victoria</destCity>
+    <orderItem>asdf</orderItem>
+  </contract>
+</contracts>
