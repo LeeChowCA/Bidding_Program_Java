@@ -5,14 +5,21 @@
 package selectcontract08;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.SortedSet;
 import java.util.TreeSet;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 
 /**
  *
@@ -48,29 +55,32 @@ class ContractModel {
         this.theContractsAll = new ArrayList<>(theContracts);
 
         try {
-            FileReader fileReader = new FileReader("M:\\Term2\\ICS125\\NetBeansProjects\\SelectContract08\\src\\selectcontract08\\contracts.txt");
-            BufferedReader bufferedReader = new BufferedReader(fileReader);
-            String line;
+            File inputFile = new File("M:\\Term2\\ICS125\\NetBeansProjects\\SelectContract08\\src\\selectcontract08\\contract.xml");
+            DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+            Document doc = dBuilder.parse(inputFile);
+            doc.getDocumentElement().normalize();
 
-            while ((line = bufferedReader.readLine()) != null) {
-                String[] tokens = line.split(",", NUMBER_OF_CONTRACT_ATTRIBUTES);
+            NodeList nList = doc.getElementsByTagName("contract");
 
-                String contractID = tokens[INDEX_OF_CONTRACT_ID];
-                String originCity = tokens[INDEX_OF_ORIGIN_CITY];
-                String destCity = tokens[INDEX_OF_DEST_CITY];
-                String orderItem = tokens[INDEX_OF_ORDER_ITEM];
+            for (int temp = 0; temp < nList.getLength(); temp++) {
+                Node nNode = nList.item(temp);
+                if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+                    Element eElement = (Element) nNode;
 
-                Contract dataContract = new Contract(contractID, originCity, destCity, orderItem);
+                    String contractID = eElement.getElementsByTagName("contractID").item(0).getTextContent();
+                    String originCity = eElement.getElementsByTagName("originCity").item(0).getTextContent();
+                    String destCity = eElement.getElementsByTagName("destCity").item(0).getTextContent();
+                    String orderItem = eElement.getElementsByTagName("orderItem").item(0).getTextContent();
 
-                theContracts.add(dataContract);
-                theContractsAll.add(dataContract);
-                originCityList.add(originCity);
+                    Contract dataContract = new Contract(contractID, originCity, destCity, orderItem);
+                    theContracts.add(dataContract);
+                    theContractsAll.add(dataContract);
+                    originCityList.add(originCity);
+                }
             }
-            originCityList.add("All");
-//            ^(?=.*[a-zA-Z0-9])[a-zA-Z0-9 ]+$
-            fileReader.close();
-        } catch (IOException ex) {
-            System.out.println(ex.getMessage());
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
         try {
@@ -94,7 +104,7 @@ class ContractModel {
             System.out.println(e + "this is a mistake");
         }
     }
-    
+
     boolean foundBids() {
         if (theBids.size() > 0) {
             return true;
@@ -102,28 +112,27 @@ class ContractModel {
             return false;
         }
     }
-    
+
     public Bid getTheBid() {
         return theBids.get(bidCounter);
     }
-    
-    public Integer getBidCount(){
+
+    public Integer getBidCount() {
         return theAllBids.size();
     }
-    
+
     public int getCurrentBidNum() {
         return bidCounter;
     }
-    
+
     public void nextBid() {
         bidCounter++;
     }
-    
+
     public void prevBid() {
         bidCounter--;
     }
 
-    
     /*void updateBidList(String city) {
         theContracts = new ArrayList<>(theContractsAll);
         if (city != "All") {
@@ -132,7 +141,6 @@ class ContractModel {
         contractCounter = 0;
         // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }*/
-    
     boolean foundContracts() {
         if (theContracts.size() > 0) {
             return true;
