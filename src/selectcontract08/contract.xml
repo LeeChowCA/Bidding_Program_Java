@@ -1,5 +1,36 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <contracts>
+          
+  
+  
+  
+  
+  <contract>
+                    
+    
+    
+    
+    <contractID>4DSF</contractID>
+                    
+    
+    
+    
+    <originCity>Nanaimo</originCity>
+                    
+    
+    
+    
+    <destCity>Victoria</destCity>
+                    
+    
+    
+    
+    <orderItem>asdf</orderItem>
+                  
+  
+  
+  
+  </contract>
         
   
   
@@ -8,11 +39,11 @@
                 
     
     
-    <contractID>4DSF</contractID>
+    <contractID>1FDS</contractID>
                 
     
     
-    <originCity>Nanaimo</originCity>
+    <originCity>Seattle</originCity>
                 
     
     
@@ -20,7 +51,7 @@
                 
     
     
-    <orderItem>asdf</orderItem>
+    <orderItem>jhgfg</orderItem>
               
   
   
@@ -31,16 +62,16 @@
   <contract>
             
     
-    <contractID>1FDS</contractID>
+    <contractID>6HGF</contractID>
             
     
-    <originCity>Seattle</originCity>
+    <originCity>Vancouver</originCity>
             
     
     <destCity>Victoria</destCity>
             
     
-    <orderItem>jhgfg</orderItem>
+    <orderItem>sdfg</orderItem>
           
   
   </contract>
@@ -48,18 +79,18 @@
   
   <contract>
         
-    <contractID>6HGF</contractID>
+    <contractID>4DSG</contractID>
         
-    <originCity>Vancouver</originCity>
+    <originCity>Seattle</originCity>
         
     <destCity>Victoria</destCity>
         
-    <orderItem>sdfg</orderItem>
+    <orderItem>asdf</orderItem>
       
   </contract>
   
   <contract>
-    <contractID>4DSG</contractID>
+    <contractID>4GFD</contractID>
     <originCity>Seattle</originCity>
     <destCity>Victoria</destCity>
     <orderItem>asdf</orderItem>
