@@ -15,3 +15,12 @@
 6HGF,Vancouver, Victoria, sdfg
 4DSG,Seattle, Victoria, asdf
 4GFD,Seattle, Victoria, asdf
+3FDS,Nanaimo, Victoria, asdf
+1FDS,Prince George, Victoria, asdf
+5JHJ,Vancouver, Victoria, asdf
+1FDS,Seattle, Victoria, asdf
+1GFG,Prince George, Victoria, sadf
+1DFS,Prince George, Victoria, asdf
+2FDG,Vancouver, Victoria, asdf
+3LLL,Prince George, Victoria, kjfhg
+9OIU,Vancouver, Victoria, asdf

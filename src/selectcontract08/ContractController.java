@@ -210,7 +210,12 @@ class ContractController {
             theView.setOrderItem(c.getOrderItem());
             theView.updateContractViewPanel(newModel.getCurrentContractNum(), newModel.getContractCount());
             System.out.println(newModel.getCurrentContractNum() + "" + newModel.getContractCount());
+            theView.setOriginCityList(theModel.getOriginCityList());
+            
             theModel = newModel;
+            theView.setOriginCityList(theModel.getOriginCityList());
+            
+            
             //make theModel = newModel, update theModel into newModel
         } else {
             theView.setContractID("???");

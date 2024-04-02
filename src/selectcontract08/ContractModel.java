@@ -78,6 +78,7 @@ class ContractModel {
                     theContractsAll.add(dataContract);
                     originCityList.add(originCity);
                 }
+                originCityList.add("All");
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -133,14 +134,15 @@ class ContractModel {
         bidCounter--;
     }
 
-    /*void updateBidList(String city) {
-        theContracts = new ArrayList<>(theContractsAll);
-        if (city != "All") {
-            theContracts.removeIf(s -> !s.contains(city));
-        }
-        contractCounter = 0;
-        // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }*/
+//    void updateBidList(String city) {
+//        theBids = new ArrayList<>(theAllBids);
+//        if (city != "All") {
+//            theBids.removeIf(s -> !s.contains(city));
+//        }
+//        contractCounter = 0;
+//        // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+//    }
+    
     boolean foundContracts() {
         if (theContracts.size() > 0) {
             return true;

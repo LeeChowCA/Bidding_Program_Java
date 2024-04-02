@@ -22,6 +22,7 @@ import static selectcontract08.ContractModel.INDEX_OF_CONTRACT_ID;
 import static selectcontract08.ContractModel.NUMBER_OF_CONTRACT_ATTRIBUTES;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.OutputKeys;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerFactory;
@@ -29,6 +30,9 @@ import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
 
 
 /*
@@ -116,27 +120,49 @@ public class NewContract extends javax.swing.JDialog {
         jComboBoxNewOriginCity.setSelectedIndex(0);
     }
 
-    private boolean isContractIdDuplicate() {
+    private boolean isContractIdDuplicate() throws ParserConfigurationException, SAXException {
 
         ArrayList<String> contrctIDList = new ArrayList<>();
         boolean isDuplicate = false;
 
         try {
 
-            FileReader fileReader = new FileReader("M:\\Term2\\ICS125\\NetBeansProjects\\SelectContract08\\src\\selectcontract08\\contracts.txt");
-            BufferedReader bufferedReader = new BufferedReader(fileReader);
-            String line;
+//            FileReader fileReader = new FileReader("M:\\Term2\\ICS125\\NetBeansProjects\\SelectContract08\\src\\selectcontract08\\contracts.txt");
+//            BufferedReader bufferedReader = new BufferedReader(fileReader);
+//            String line;
+            File inputFile = new File("M:\\Term2\\ICS125\\NetBeansProjects\\SelectContract08\\src\\selectcontract08\\contract.xml");
+            DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+            Document doc = dBuilder.parse(inputFile);
+            doc.getDocumentElement().normalize();
 
-            while ((line = bufferedReader.readLine()) != null) {
-                String[] tokens = line.split(",", NUMBER_OF_CONTRACT_ATTRIBUTES);
+            NodeList nList = doc.getElementsByTagName("contract");
 
-                String contractID = tokens[INDEX_OF_CONTRACT_ID];
+            for (int temp = 0; temp < nList.getLength(); temp++) {
+                Node nNode = nList.item(temp);
+                if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+                    Element eElement = (Element) nNode;
 
-                contrctIDList.add(contractID);
+                    String contractID = eElement.getElementsByTagName("contractID").item(0).getTextContent();
+                    String originCity = eElement.getElementsByTagName("originCity").item(0).getTextContent();
+                    String destCity = eElement.getElementsByTagName("destCity").item(0).getTextContent();
+                    String orderItem = eElement.getElementsByTagName("orderItem").item(0).getTextContent();
+
+                    contrctIDList.add(contractID);
+                }
             }
-            fileReader.close();
+
+//            while ((line = bufferedReader.readLine()) != null) {
+//                String[] tokens = line.split(",", NUMBER_OF_CONTRACT_ATTRIBUTES);
+//
+//                String contractID = tokens[INDEX_OF_CONTRACT_ID];
+//
+//                contrctIDList.add(contractID);
+//            }
+//            fileReader.close();
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
+            ex.printStackTrace();
         }
 
         for (String x : contrctIDList) {
@@ -293,91 +319,98 @@ public class NewContract extends javax.swing.JDialog {
             newMessages.showMessageDialog(null, "original city and destination can't be the same!");
         } else if (verificationForNewContractID && jComboBoxNewDestination.getSelectedItem() != jComboBoxNewOriginCity.getSelectedItem() && !verificationForNewOrder) {
             newMessages.showMessageDialog(null, "The order item is not valid. It must be text and cannot be exclusively numbers or contain commas.");
-        } else if (isContractIdDuplicate()) {
-            newMessages.showMessageDialog(null, "Duplicate Contaract exits, please use another ID");
-        } else {
-            try {
-                BufferedWriter writer = new BufferedWriter(new FileWriter("M:\\Term2\\ICS125\\NetBeansProjects\\SelectContract08\\src\\selectcontract08\\contracts.txt", true));
-                writer.write(jTextNewContractID.getText().toUpperCase() + ",");
-                writer.write(jComboBoxNewOriginCity.getSelectedItem() + ", ");
-                writer.write(jComboBoxNewDestination.getSelectedItem() + ", ");
-                writer.write(jTextNewOrder.getText() + "\n");
-
+        } else try {
+            if (isContractIdDuplicate()) {
+                newMessages.showMessageDialog(null, "Duplicate Contaract exits, please use another ID");
+            } else {
                 try {
-                    File inputFile = new File("M:\\Term2\\ICS125\\NetBeansProjects\\SelectContract08\\src\\selectcontract08\\contract.xml");
-                    DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-                    DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-                    Element rootElement;
-                    Document doc;
-                    
+                    BufferedWriter writer = new BufferedWriter(new FileWriter("M:\\Term2\\ICS125\\NetBeansProjects\\SelectContract08\\src\\selectcontract08\\contracts.txt", true));
+                    writer.write(jTextNewContractID.getText().toUpperCase() + ",");
+                    writer.write(jComboBoxNewOriginCity.getSelectedItem() + ", ");
+                    writer.write(jComboBoxNewDestination.getSelectedItem() + ", ");
+                    writer.write(jTextNewOrder.getText() + "\n");
 
-                    // root element
-                    if (inputFile.exists()) {
-                        doc = dBuilder.parse(inputFile);
-                        rootElement = (Element)doc.getFirstChild();
-                    } else{
-                        doc = dBuilder.newDocument();
-                        rootElement = doc.createElement("contracts");
-                        doc.appendChild(rootElement);
+                    try {
+                        File inputFile = new File("M:\\Term2\\ICS125\\NetBeansProjects\\SelectContract08\\src\\selectcontract08\\contract.xml");
+                        DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+                        DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+                        Element rootElement;
+                        Document doc;
+
+                        // root element
+                        if (inputFile.exists()) {
+                            doc = dBuilder.parse(inputFile);
+                            rootElement = (Element) doc.getFirstChild();
+                        } else {
+                            doc = dBuilder.newDocument();
+                            rootElement = doc.createElement("contracts");
+                            doc.appendChild(rootElement);
+                        }
+
+                        // contract element
+                        Element contract = doc.createElement("contract");
+                        rootElement.appendChild(contract);
+
+                        // setting attribute to element
+                        // contract.setAttribute("id", "1");
+                        // contractID element
+                        Element contractID = doc.createElement("contractID");
+                        contractID.appendChild(doc.createTextNode(jTextNewContractID.getText().toUpperCase()));
+                        contract.appendChild(contractID);
+
+                        // originCity element
+                        Element originCity = doc.createElement("originCity");
+                        originCity.appendChild(doc.createTextNode(jComboBoxNewOriginCity.getSelectedItem().toString()));
+                        contract.appendChild(originCity);
+
+                        // destCity element
+                        Element destCity = doc.createElement("destCity");
+                        destCity.appendChild(doc.createTextNode(jComboBoxNewDestination.getSelectedItem().toString()));
+                        contract.appendChild(destCity);
+
+                        // orderItem element
+                        Element orderItem = doc.createElement("orderItem");
+                        orderItem.appendChild(doc.createTextNode(jTextNewOrder.getText()));
+                        contract.appendChild(orderItem);
+
+                        // write the content into xml file
+                        TransformerFactory transformerFactory = TransformerFactory.newInstance();
+                        Transformer transformer = transformerFactory.newTransformer();
+
+                        transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+//                    transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "2");
+
+                        DOMSource source = new DOMSource(doc);
+                        StreamResult result = new StreamResult(new File("M:\\Term2\\ICS125\\NetBeansProjects\\SelectContract08\\src\\selectcontract08\\contract.xml"));
+
+// Output to console for testing
+// StreamResult consoleResult = new StreamResult(System.out);
+                        transformer.transform(source, result);
+// transformer.transform(source, consoleResult);
+
+                        System.out.println("File saved!");
+                        
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
                     }
 
-                    // contract element
-                    Element contract = doc.createElement("contract");
-                    rootElement.appendChild(contract);
-
-                    // setting attribute to element
-                    // contract.setAttribute("id", "1");
-                    // contractID element
-                    Element contractID = doc.createElement("contractID");
-                    contractID.appendChild(doc.createTextNode(jTextNewContractID.getText().toUpperCase()));
-                    contract.appendChild(contractID);
-
-                    // originCity element
-                    Element originCity = doc.createElement("originCity");
-                    originCity.appendChild(doc.createTextNode(jComboBoxNewOriginCity.getSelectedItem().toString()));
-                    contract.appendChild(originCity);
-
-                    // destCity element
-                    Element destCity = doc.createElement("destCity");
-                    destCity.appendChild(doc.createTextNode(jComboBoxNewDestination.getSelectedItem().toString()));
-                    contract.appendChild(destCity);
-
-                    // orderItem element
-                    Element orderItem = doc.createElement("orderItem");
-                    orderItem.appendChild(doc.createTextNode(jTextNewOrder.getText()));
-                    contract.appendChild(orderItem);
-
-                    // write the content into xml file
-                    TransformerFactory transformerFactory = TransformerFactory.newInstance();
-                    Transformer transformer = transformerFactory.newTransformer();
-
-                    transformer.setOutputProperty(OutputKeys.INDENT, "yes");
-                    transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "2");
-
-                    DOMSource source = new DOMSource(doc);
-                    StreamResult result = new StreamResult(new File("M:\\Term2\\ICS125\\NetBeansProjects\\SelectContract08\\src\\selectcontract08\\contract.xml"));
-
-                    // Output to console for testing
-                    // StreamResult consoleResult = new StreamResult(System.out);
-                    transformer.transform(source, result);
-                    // transformer.transform(source, consoleResult);
-
-                    System.out.println("File saved!");
-
-                } catch (Exception e) {
-                    e.printStackTrace();
+//            writer.write(currentDate);
+                    writer.close();
+                    newMessages.showMessageDialog(null, "New Contract added");
+                    setUpDisplay();
+                    controller.refreshMainInterface();
+                    setUpDisplay();
+                } catch (IOException ex) {
+                    Logger.getLogger(ConfirmBid.class.getName()).log(Level.SEVERE, null, ex);
+                    setUpDisplay();
                 }
 
-//            writer.write(currentDate);
-                writer.close();
-                newMessages.showMessageDialog(null, "New Contract added");
-                setUpDisplay();
-                controller.refreshMainInterface();
-            } catch (IOException ex) {
-                Logger.getLogger(ConfirmBid.class.getName()).log(Level.SEVERE, null, ex);
-                setUpDisplay();
             }
-
+        } catch (ParserConfigurationException ex) {
+            Logger.getLogger(NewContract.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SAXException ex) {
+            Logger.getLogger(NewContract.class.getName()).log(Level.SEVERE, null, ex);
         }
 // TODO add your handling code here:
     }//GEN-LAST:event_jButtonFinishActionPerformed
